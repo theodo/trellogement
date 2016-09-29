@@ -1,8 +1,8 @@
 {
 "manifest_version": 2,
-"name" :"extension chrome",
+"name" :"Trellogement",
 "version" :"1.0",
-"description" :"Un premier test",
+"description" :"Une extension chrome pour simplifier la recherche d'appartement avec Se Loger et Trello",
 "browser_action" :
 	{
     "default_icon" : "hello.png",
