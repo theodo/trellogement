@@ -1,12 +1,31 @@
 {
-"manifest_version": 2,
-"name" :"Trellogement",
-"content_security_policy": "script-src 'self' https://api.trello.com; object-src 'self'",
-"version" :"1.0",
-"description" :"Une extension chrome pour simplifier la recherche d'appartement avec Se Loger et Trello",
-"browser_action" :
+	"name": "Trellogement",
+	"version": "0.1",
+	"manifest_version" : 2,
+	"description": "Gérez facilement vos demandes de logement",
+	"page_action" :
 	{
-  	  "default_icon" : "hello.png",
-		"default_popup" :"helloworld.html"
-	}
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://trello.com/b/*"],
+			"js": [
+				"lib/jquery-2.1.1.min.js",
+				"scripts/main.js"
+			],
+			"run_at": "document_idle"
+		}
+	],
+	"permissions": [
+		"tabs"
+	],
+	"icons": {
+		"16": "icons/16.png",
+		"48": "icons/48.png",
+		"128": "icons/128.png"
+	},
+	"web_accessible_resources": [
+		"settings/index.html"
+	],
+	"options_page": "settings/index.html"
 }
