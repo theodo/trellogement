@@ -10,7 +10,7 @@
 		{
 			"matches": ["https://trello.com/b/*"],
 			"js": [
-				"lib/jquery-2.1.1.min.js",
+				"node_modules/jquery/dist/jquery.min.js",
 				"scripts/main.js"
 			],
 			"run_at": "document_idle"
@@ -19,13 +19,14 @@
 		{
 			"matches": ["http://www.seloger.com/*"],
 			"js": [
-				"lib/jquery-2.1.1.min.js",
+				"node_modules/jquery/dist/jquery.min.js",
 				"scripts/inject.js"
 			],
 			"css": [
 				"settings/css/button.css"
 			]
 		}
+
 	],
 	"permissions": [
 		"tabs"
