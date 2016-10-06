@@ -3,6 +3,10 @@
 ## Install the project
 
 Clone the project.
+You need to have node installed on your platform.
+
+    cd trelloGementExtension
+    npm install
 
 ## Install custom extension
 

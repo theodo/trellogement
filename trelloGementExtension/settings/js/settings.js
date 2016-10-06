@@ -2,19 +2,25 @@ Trello.setKey(APP_KEY);
 
 var checkIfBoardIsPresent = function () {
   Trello.get('/member/me/boards', function(boards) {
+    var trelloBoard = null;
     var isBoardPresent = !!boards.filter(function (board) {
-      return board.name === 'Mes logements' && !board.closed;
+      if (board.name === 'Mes logements' && !board.closed) {
+        trelloBoard = board;
+        return true;
+      };
     }).length;
 
     if (!isBoardPresent) {
       var newBoard = {
         name: 'Mes logements',
       };
-      Trello.post('/boards', newBoard, function () {
-        $('.alert-success').removeClass('hidden').text('Nous avons créé votre board Trello !');
+      Trello.post('/boards', newBoard, function (board) {
+        $('.alert-success').removeClass('hidden').text('Nous avons créé votre board Trello !')
+        .append(`<br><a class="btn btn-success" href="${board.url}">Voir mon board</a>`);
       });
     } else {
-      $('.alert-info').removeClass('hidden').text('Vous avez déjà un board trello !');
+      $('.alert-info').removeClass('hidden').text('Vous avez déjà un board trello !')
+      .append(`<br><a class="btn btn-primary" href="${trelloBoard.url}">Voir mon board</a>`);
     }
 
   });
