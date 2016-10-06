@@ -1,0 +1,39 @@
+{
+	"name": "TrelloGement",
+	"version": "0.1",
+	"manifest_version" : 2,
+	"description": "Gérez facilement vos demandes de logement",
+	"page_action" :
+	{
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://trello.com/b/*"],
+			"js": [
+				"node_modules/jquery/dist/jquery.min.js",
+				"scripts/main.js"
+			],
+			"run_at": "document_idle"
+		},
+
+		{
+			"matches": ["http://www.seloger.com/*"],
+			"js": [
+				"node_modules/jquery/dist/jquery.min.js",
+				"scripts/inject.js"
+			],
+			"css": [
+				"settings/css/button.css"
+			]
+		}
+
+	],
+	"permissions": [
+		"http://www.seloger.com/*",
+		"tabs"
+	],
+	"web_accessible_resources": [
+		"settings/index.html"
+	],
+	"options_page": "settings/index.html"
+}

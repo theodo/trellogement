@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+  <title>TrelloGement</title>
+</head>
+<body class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h1>TrelloGement</h1>
+      <div class="panel" id="trello_helper_loggedout" style="display: none">
+        <p>Pour utiliser l'extension vous avez besoin d'être authentifié.</p>
+        <a href="#" class="btn btn-primary" id="trello_helper_login">S'identifer</a><br/>
+      </div>
+      <div class="panel" id="trello_helper_loggedin" style="display: none">
+        <p>Vous êtes bien connecté.</p>
+        <button id="selogerScrapping" class="btn btn-secondary">Scrap page</button>
+        <a href="#" class="btn btn-default" id="trello_helper_logout">Se déconnecter</a><br/>
+      </div>
+
+      <div class="hidden alert alert-success"></div>
+      <div class="hidden alert alert-info"></div>
+      <div class="hidden alert alert-error"></div>
+    </div>
+  </div>
+  <script src="../scripts/key.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../lib/trello-client.js"></script>
+  <script src="../lib/hashSearch.js"></script>
+  <script src="../scripts/scrapping.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
