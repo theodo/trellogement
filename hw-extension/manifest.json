@@ -4,9 +4,12 @@
 "content_security_policy": "script-src 'self' https://api.trello.com; object-src 'self'",
 "version" :"1.0",
 "description" :"Une extension chrome pour simplifier la recherche d'appartement avec Se Loger et Trello",
+"permissions": [
+	"http://www.seloger.com/*",
+	"tabs"
+],
 "browser_action" :
 	{
-  	  "default_icon" : "hello.png",
-		"default_popup" :"helloworld.html"
+		"default_popup" :"scrap_test.html"
 	}
 }
