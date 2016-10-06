@@ -4,13 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
-  <title>Trellogement</title>
+  <title>TrelloGement</title>
 </head>
 <body class="container-fluid">
 
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h1>Trellogement</h1>
+    <div class="col-sm-4 col-sm-offset-4">
+      <h1>TrelloGement</h1>
       <div class="panel" id="trello_helper_loggedout" style="display: none">
         <p>Pour utiliser l'extension vous avez besoin d'être authentifié.</p>
         <a href="#" class="btn btn-primary" id="trello_helper_login">S'identifer</a><br/>
@@ -19,10 +19,10 @@
         <p>Vous êtes bien connecté.</p>
         <a href="#" class="btn btn-default" id="trello_helper_logout">Se déconnecter</a><br/>
       </div>
-      <div id="boards">
-        <ul>
-        </ul>
-      </div>
+
+      <div class="hidden alert alert-success"></div>
+      <div class="hidden alert alert-info"></div>
+      <div class="hidden alert alert-error"></div>
     </div>
   </div>
   <script src="../scripts/key.js"></script>

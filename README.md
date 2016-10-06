@@ -1,4 +1,4 @@
-# Trellogement
+# TrelloGement
 
 ## Install the project
 
