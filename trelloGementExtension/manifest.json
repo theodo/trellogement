@@ -26,14 +26,14 @@
 				"settings/css/button.css"
 			]
 		}
-
 	],
 	"permissions": [
 		"http://www.seloger.com/*",
 		"tabs"
 	],
 	"web_accessible_resources": [
-		"settings/index.html"
+		"settings/index.html",
+		"scripts/scrapping.js"
 	],
 	"options_page": "settings/index.html"
 }
