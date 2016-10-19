@@ -21,8 +21,7 @@
 			"js": [
 				"node_modules/jquery/dist/jquery.min.js",
 				"lib/trello-client.js",
-				"scripts/extension.js",
-				"scripts/inject.js"
+				"scripts/extension.js"
 			],
 			"css": [
 				"settings/css/button.css"
@@ -37,6 +36,7 @@
 	"web_accessible_resources": [
 		"settings/index.html",
 		"scripts/extension.js",
+		"scripts/inject.js",
 		"lib/trello-client.js"
 	],
 	"options_page": "settings/index.html"

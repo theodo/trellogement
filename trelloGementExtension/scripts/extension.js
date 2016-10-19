@@ -1,8 +1,3 @@
-function scrap() {
-  // scrap datas from the current url
-    var $img = $('img.carrousel_image_visu').attr('src');
-    alert($img);
-}
 // Prepare Trello client
 chrome.storage.local.get('trellogement_trello_key', function (key) {
   Trello.setKey(key.trellogement_trello_key);
@@ -26,3 +21,7 @@ function init(boardId) {
     }
   });
 }
+
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('scripts/inject.js');
+(document.head).appendChild(s);
