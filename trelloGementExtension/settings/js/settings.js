@@ -13,10 +13,19 @@ var checkIfBoardIsPresent = function () {
     if (!isBoardPresent) {
       var newBoard = {
         name: 'Mes logements',
+        defaultLists: false,
       };
       Trello.post('/boards', newBoard, function (board) {
         $('.alert-success').removeClass('hidden').text('Nous avons créé votre board Trello !')
         .append(`<br><a class="btn btn-success" href="${board.url}">Voir mon board</a>`);
+        var nameList = [
+          'Je suis intéressé',
+          'A appeler',
+          'Visite programmée',
+          'En attente de réponse',
+          'KO',
+        ];
+        addInitialListsToBoard(nameList, board)
       });
     } else {
       $('.alert-info').removeClass('hidden').text('Vous avez déjà un board trello !')
@@ -95,3 +104,20 @@ function init() {
             }
           });
     });
+
+function addInitialListsToBoard(nameList, board) {
+  if (nameList.length > 0) {
+    Trello.post(
+      `/boards/${board.id}/lists`,
+      {
+        name: nameList[0],
+        pos: 'bottom',
+      },
+      function (response) {
+        return addInitialListsToBoard(nameList.slice(1), board);
+      }
+    );
+  }
+
+  return;
+}
