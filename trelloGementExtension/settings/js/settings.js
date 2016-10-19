@@ -2,6 +2,17 @@ Trello.setKey(APP_KEY);
 
 var checkIfBoardIsPresent = function () {
   Trello.get('/member/me/boards', function(boards) {
+    var token = localStorage.trello_token;
+    console.log(token);
+    chrome.storage.local.set(
+      {
+        'trellogement_trello_token': token,
+      },
+      function() {
+        console.log('Token stocké de manière pas secure du tout !');
+      }
+    );
+
     var trelloBoard = null;
     var isBoardPresent = !!boards.filter(function (board) {
       if (board.name === 'Mes logements' && !board.closed) {
@@ -18,6 +29,13 @@ var checkIfBoardIsPresent = function () {
       Trello.post('/boards', newBoard, function (board) {
         $('.alert-success').removeClass('hidden').text('Nous avons créé votre board Trello !')
         .append(`<br><a class="btn btn-success" href="${board.url}">Voir mon board</a>`);
+
+        chrome.storage.local.set({
+          'trellogement_trello_board_id': board.id,
+        }, function() {
+          console.log('Board id stocké de manière pas sécu du tout !');
+        });
+
         var nameList = [
           'Je suis intéressé',
           'A appeler',
@@ -30,6 +48,13 @@ var checkIfBoardIsPresent = function () {
     } else {
       $('.alert-info').removeClass('hidden').text('Vous avez déjà un board trello !')
       .append(`<br><a class="btn btn-primary" href="${trelloBoard.url}">Voir mon board</a>`);
+
+      chrome.storage.local.set({
+        'trellogement_trello_board_id': trelloBoard.id,
+      }, function() {
+        console.log('Board id stocké de manière pas sécu du tout !');
+      });
+
     }
 
   });
