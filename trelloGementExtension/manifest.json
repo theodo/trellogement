@@ -21,7 +21,7 @@
 			"js": [
 				"node_modules/jquery/dist/jquery.min.js",
 				"lib/trello-client.js",
-				"scripts/scrapping.js",
+				"scripts/extension.js",
 				"scripts/inject.js"
 			],
 			"css": [
@@ -36,7 +36,7 @@
 	],
 	"web_accessible_resources": [
 		"settings/index.html",
-		"scripts/scrapping.js",
+		"scripts/extension.js",
 		"lib/trello-client.js"
 	],
 	"options_page": "settings/index.html"
