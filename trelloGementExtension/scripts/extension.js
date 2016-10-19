@@ -63,21 +63,31 @@ function compare(boardId){
   var idCard = null;
   Trello.get(`/boards/${boardId}/cards`, function(cards) {
     for (card of cards) {
+
+      //We look for a card with the same title and if we found it
+      //We compare the descriptions
       if (card.name == currentPage['title']) {
         checkIfCardPresent = true;
-        var idCard = card.id
-        break;
+        var idCard = card.id;
+        Trello.get('/cards/'+idCard+'/actions', {filter : "commentCard"}, function(comments) {
+
+          //We compare the descriptions and add the button matching the status
+          if (comments[0].data.text == currentPage['description']) { //the ad has already been added
+            buttonLocalisation.append(buttonAdded);
+          } else { //if the ad hasn't been added
+            buttonLocalisation.append(buttonToAdd);
+          }
+
+        });
+
         }
       }
 
-      // Appending the correct button :
-      //if the ad has already been added
-      if (checkIfCardPresent) {
-        buttonLocalisation.append(buttonAdded);
-      } else { //if the ad hasn't been added
+      //If no title matches, we add the initial button anyway
+      if (!checkIfCardPresent) {
         buttonLocalisation.append(buttonToAdd);
       }
 
-      console.log(checkIfCardPresent);
+
     });
 }
