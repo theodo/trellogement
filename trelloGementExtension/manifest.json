@@ -20,7 +20,8 @@
 			"matches": ["http://www.seloger.com/*"],
 			"js": [
 				"node_modules/jquery/dist/jquery.min.js",
-				"scripts/inject.js"
+				"lib/trello-client.js",
+				"scripts/extension.js"
 			],
 			"css": [
 				"settings/css/button.css"
@@ -29,11 +30,14 @@
 	],
 	"permissions": [
 		"http://www.seloger.com/*",
-		"tabs"
+		"tabs",
+		"storage"
 	],
 	"web_accessible_resources": [
 		"settings/index.html",
-		"scripts/scrapping.js"
+		"scripts/extension.js",
+		"scripts/inject.js",
+		"lib/trello-client.js"
 	],
 	"options_page": "settings/index.html"
 }
