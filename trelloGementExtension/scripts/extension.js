@@ -25,6 +25,12 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
   init(boardId);
   compare(boardId);
 
+  // If user is on search page, print which offers are already in trello
+  if (window.location.href.indexOf('www.seloger.com/list') !== -1)
+  {
+    compareList(boardId);
+  }
+
   // This part handles request made from seLoger pages by clicking on buttons
   window.addEventListener("message", function(event) {
     // We only accept messages from the page
@@ -131,6 +137,24 @@ function compare(boardId){
 
 
     });
+}
+
+
+//Compare function for search list
+function compareList(boardId){
+  Trello.get(`/boards/${boardId}/cards`, function(cards) {
+    for (card of cards) {
+      var description = card.desc;
+      var offerId = description.substring(description.lastIndexOf("/")+1,description.lastIndexOf(".htm"));
+
+      $('article').each(function() {
+          if($(this).data('listing-id') == offerId)
+          {
+            $(this).find('ul.property_list').append('<li style="background-color:#4c4cff; color:white">Ajouté!</li>');
+          }
+      });
+    }
+  });
 }
 
 var s = document.createElement('script');
