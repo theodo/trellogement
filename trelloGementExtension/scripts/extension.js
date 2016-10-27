@@ -82,6 +82,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
             //Getting card url
             Trello.get('/cards/'+idCard, {fields : "url"}, function(urlObject) {
               var urlCard = urlObject.url;
+              $('#button_trello').prop('disabled', false);
               window.open(urlCard);
             });
           }
