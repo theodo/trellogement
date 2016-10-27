@@ -70,6 +70,7 @@ var buttonLocalisation = $(".resume__infos .resume__action");
 
 var buttonAdded = $("<button>", {
   type: "button",
+  class: "btn",
   id:"button_trello",
   text:"Déjà ajouté !",
   alt:"Déjà ajouté !",
@@ -78,6 +79,7 @@ var buttonAdded = $("<button>", {
 var buttonToAdd = $("<button>", {
   type: "button",
   id:"button_trello",
+  class: "btn",
   onclick:"createCard()",
   text:"Ajouter à Trellogement",
   alt:"Ajouter à Trellogement",
