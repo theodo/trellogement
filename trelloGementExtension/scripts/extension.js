@@ -90,17 +90,17 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
 //Creating Trello buttons and button localisation
 // Init function
 function init(boardId) {
-  Trello.get(`/boards/${boardId}/lists`, function(lists) {
-    var url = chrome.extension.getURL('/templates/button-dropdown.html');
-    var template = $.get(url, function (data) {
-      var buttonLocalisation = $(".resume__infos .resume__action");
-      buttonLocalisation.prepend($(data));
+  var url = chrome.extension.getURL('/templates/button-dropdown.html');
+  $.get(url, function (data) {
+    var buttonLocalisation = $(".resume__infos .resume__action");
+    buttonLocalisation.prepend($(data));
+    Trello.get(`/boards/${boardId}/lists`, function(lists) {
       for (list of lists) {
         $('#actions-available').append('<li><a href="#">'+  list.name + '</a></li>');
       }
     });
   });
-};
+}
 
 //Compare function
 function compare(boardId){
