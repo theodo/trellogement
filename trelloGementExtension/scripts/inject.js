@@ -8,5 +8,6 @@ function createCard() {
 }
 
 function getCardURL() {
+  $('#button_trello').prop("disabled",true);
   window.postMessage("getCardURL", "*");
 }

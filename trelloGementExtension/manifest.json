@@ -25,8 +25,7 @@
 				"scripts/extension.js"
 			],
 			"css": [
-				"settings/css/button.css",
-				"lib/css/bootstrap.min.css"
+				"settings/css/button.css"
 			]
 		}
 	],

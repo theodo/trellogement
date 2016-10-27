@@ -1,13 +1,13 @@
 // scrap datas from the current url and return an dictionnary
 function scrap() {
-    var infos = {
-      img: $('img.carrousel_image_visu').attr('src'),
-      price: $('span.resume__prix').text().trim(),
-      title: $('h1.detail-title').text().replace(/\r?\n|\r/g,'').replace(/ +(?= )/g,'').trim(),
-      description: $('p.description').html(),
-      link: window.location.href,
-    };
-    return infos;
+  var infos = {
+    img: $('img.carrousel_image_visu').attr('src'),
+    price: $('span.resume__prix').text().trim(),
+    title: $('h1.detail-title').text().replace(/\r?\n|\r/g,'').replace(/ +(?= )/g,'').trim(),
+    description: $('p.description').html(),
+    link: window.location.href,
+  };
+  return infos;
 }
 
 // Prepare Trello client
@@ -35,7 +35,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
   window.addEventListener("message", function(event) {
     // We only accept messages from the page
     if (event.source != window)
-      return;
+    return;
 
     // Action to create a new card
     if (event.data == 'createCard') {
@@ -63,7 +63,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
         Trello.post('/cards/', newCard, function(data) {
           // Creating here the comment with description of offer in it
           $('#button_trello').text('Déjà ajouté');
-          $('#button_trello').attr('onclick', '');
+          $('#button_trello').attr('onclick', 'createCard()');
           Trello.post('/cards/' + data.id + '/actions/comments', { text : scrap()['description']});
           console.log('Card created successfully.');//TODO change button on the page
         });
@@ -79,7 +79,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
           if (card.name == currentPage['title']) {
             checkIfCardPresent = true;
             var idCard = card.id;
-              //Getting card url
+            //Getting card url
             Trello.get('/cards/'+idCard, {fields : "url"}, function(urlObject) {
               var urlCard = urlObject.url;
               window.open(urlCard);
@@ -130,20 +130,20 @@ function compare(boardId){
             $('#button_trello').text('Déjà ajouté');
             $('#button_trello').attr('onclick', 'getCardURL()');
           } else { //if the ad hasn't been added
-            $('#button_trello').text('Ajouter à Trellogement');
-            $('#button_trello').attr('onclick', 'createCard()');
-          }
-        });
-
+          $('#button_trello').text('Ajouter à Trellogement');
+          $('#button_trello').attr('onclick', 'createCard()');
         }
-      }
+      });
 
-      //If no title matches, we add the initial button anyway
-      if (!checkIfCardPresent) {
-        $('#button_trello').text('Ajouter à Trellogement');
-        $('#button_trello').attr('onclick', 'createCard()');
-      }
-    });
+    }
+  }
+
+  //If no title matches, we add the initial button anyway
+  if (!checkIfCardPresent) {
+    $('#button_trello').text('Ajouter à Trellogement');
+    $('#button_trello').attr('onclick', 'createCard()');
+  }
+});
 }
 
 
