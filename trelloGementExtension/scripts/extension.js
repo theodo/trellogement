@@ -62,7 +62,8 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
       });
     }
 
-    //This part redirect user on current card URL
+    //This part redirect user on current card URL when using the getCardURL() method
+    /*--------------------------------*/
     if(event.data == 'getCardURL') {
       var currentPage = scrap();
       Trello.get(`/boards/${boardId}/cards`, function(cards) {
@@ -79,6 +80,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
         }
       });
     }
+    /*--------------------------------*/
 
   }, false);
 });
