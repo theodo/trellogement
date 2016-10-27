@@ -56,8 +56,8 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
         };
         Trello.post('/cards/', newCard, function(data) {
           // Creating here the comment with description of offer in it
-          $('#button_trello').remove();
-          buttonLocalisation.append(buttonAdded);
+          $('#button_trello').text('Déjà ajouté');
+          $('#button_trello').attr('onclick', '');
           Trello.post('/cards/' + data.id + '/actions/comments', { text : scrap()['description']});
           console.log('Card created successfully.');//TODO change button on the page
         });
@@ -88,35 +88,19 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
 });
 
 //Creating Trello buttons and button localisation
-
-var buttonLocalisation = $(".resume__infos .resume__action");
-
-var buttonAdded = $("<button>", {
-  type: "button",
-  class: "btn",
-  id:"button_trello",
-  onclick:"getCardURL()",
-  text:"Déjà ajouté !",
-  alt:"Déjà ajouté !",
-});
-
-var buttonToAdd = $("<button>", {
-  type: "button",
-  id:"button_trello",
-  class: "btn",
-  onclick:"createCard()",
-  text:"Ajouter à Trellogement",
-  alt:"Ajouter à Trellogement",
-});
-
 // Init function
 function init(boardId) {
-  Trello.get(`/boards/${boardId}/cards`, function(cards) {
-    for (card of cards) {
-      console.log(card.name, ' : ', card.desc);
-    }
+  Trello.get(`/boards/${boardId}/lists`, function(lists) {
+    var url = chrome.extension.getURL('/templates/button-dropdown.html');
+    var template = $.get(url, function (data) {
+      var buttonLocalisation = $(".resume__infos .resume__action");
+      buttonLocalisation.prepend($(data));
+      for (list of lists) {
+        $('#actions-available').append('<li><a href="#">'+  list.name + '</a></li>');
+      }
+    });
   });
-}
+};
 
 //Compare function
 function compare(boardId){
@@ -136,12 +120,13 @@ function compare(boardId){
         Trello.get('/cards/'+idCard+'/actions', {filter : "commentCard"}, function(comments) {
 
           //We compare the descriptions and add the button matching the status
-          if (comments[0].data.text == currentPage['description']) { //the ad has already been added
-            buttonLocalisation.append(buttonAdded);
+          if (comments.length > 0 && (comments[0].data.text == currentPage['description'])) { //the ad has already been added
+            $('#button_trello').text('Déjà ajouté');
+            $('#button_trello').attr('onclick', 'getCardURL()');
           } else { //if the ad hasn't been added
-            buttonLocalisation.append(buttonToAdd);
+            $('#button_trello').text('Ajouter à Trellogement');
+            $('#button_trello').attr('onclick', 'createCard()');
           }
-
         });
 
         }
@@ -149,10 +134,9 @@ function compare(boardId){
 
       //If no title matches, we add the initial button anyway
       if (!checkIfCardPresent) {
-        buttonLocalisation.append(buttonToAdd);
+        $('#button_trello').text('Ajouter à Trellogement');
+        $('#button_trello').attr('onclick', 'createCard()');
       }
-
-
     });
 }
 
