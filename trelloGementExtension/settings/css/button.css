@@ -1,4 +1,13 @@
-#button_trello{
+#trello_button_group {
+  padding: 0;
+  margin: 0 25px 0;
+  background-color: #4c4cff;
+}
+
+#trello_button_group .dropdown-toggle {
+}
+
+#button_trello {
   margin-top: 0px;
   margin-left: 0px;
   margin-bottom: 0px;

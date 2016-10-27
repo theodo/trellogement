@@ -21,10 +21,12 @@
 			"js": [
 				"node_modules/jquery/dist/jquery.min.js",
 				"lib/trello-client.js",
+				"lib/js/bootstrap.min.js",
 				"scripts/extension.js"
 			],
 			"css": [
-				"settings/css/button.css"
+				"settings/css/button.css",
+				"lib/css/bootstrap.min.css"
 			]
 		}
 	],
@@ -37,7 +39,8 @@
 		"settings/index.html",
 		"scripts/extension.js",
 		"scripts/inject.js",
-		"lib/trello-client.js"
+		"lib/trello-client.js",
+		"templates/button-dropdown.html"
 	],
 	"options_page": "settings/index.html"
 }
