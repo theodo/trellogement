@@ -56,6 +56,8 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
         };
         Trello.post('/cards/', newCard, function(data) {
           // Creating here the comment with description of offer in it
+          $('#button_trello').remove();
+          buttonLocalisation.append(buttonAdded);
           Trello.post('/cards/' + data.id + '/actions/comments', { text : scrap()['description']});
           console.log('Card created successfully.');//TODO change button on the page
         });
