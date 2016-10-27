@@ -1,0 +1,4 @@
+Ne vous perdez plus dans votre recherche d'appartement !
+
+Avec l'extension TrelloGement, vous pouvez ajouter et gérer les appartements qui vous intéressent directement depuis le site seLoger.com.
+Vous pouvez ensuite accéder à votre board Trello pour avoir une vision complète d'où vous en êtes, vos contacts et vos visites.
