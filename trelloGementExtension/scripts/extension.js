@@ -1,5 +1,5 @@
 function scrap() {
-  // scrap datas from the current url and return an dictionnary
+// scrap datas from the current url and return an dictionnary
     var infos = {
       img: $('img.carrousel_image_visu').attr('src'),
       price: $('span.resume__prix').text().trim(),
@@ -7,7 +7,6 @@ function scrap() {
       description: $('p.description').html(),
       link: window.location.href,
     };
-
     return infos;
 }
 
