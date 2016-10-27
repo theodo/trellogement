@@ -6,3 +6,7 @@ function createCard() {
     */
     window.postMessage('createCard', '*');
 }
+
+function getCardURL() {
+  window.postMessage("getCardURL", "*");
+}

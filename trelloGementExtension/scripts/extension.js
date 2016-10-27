@@ -63,6 +63,27 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
         });
       });
     }
+
+    //This part redirect user on current card URL when using the getCardURL() method
+    /*--------------------------------*/
+    if(event.data == 'getCardURL') {
+      var currentPage = scrap();
+      Trello.get(`/boards/${boardId}/cards`, function(cards) {
+        for (card of cards) {
+          if (card.name == currentPage['title']) {
+            checkIfCardPresent = true;
+            var idCard = card.id;
+              //Getting card url
+            Trello.get('/cards/'+idCard, {fields : "url"}, function(urlObject) {
+              var urlCard = urlObject.url;
+              window.open(urlCard);
+            });
+          }
+        }
+      });
+    }
+    /*--------------------------------*/
+
   }, false);
 });
 
@@ -74,6 +95,7 @@ var buttonAdded = $("<button>", {
   type: "button",
   class: "btn",
   id:"button_trello",
+  onclick:"getCardURL()",
   text:"Déjà ajouté !",
   alt:"Déjà ajouté !",
 });
@@ -110,6 +132,7 @@ function compare(boardId){
       if (card.name == currentPage['title']) {
         checkIfCardPresent = true;
         var idCard = card.id;
+
         Trello.get('/cards/'+idCard+'/actions', {filter : "commentCard"}, function(comments) {
 
           //We compare the descriptions and add the button matching the status
