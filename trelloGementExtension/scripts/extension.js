@@ -128,3 +128,7 @@ function compare(boardId){
 
     });
 }
+
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('scripts/inject.js');
+(document.head).appendChild(s);
