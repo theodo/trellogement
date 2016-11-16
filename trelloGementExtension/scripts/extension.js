@@ -90,6 +90,22 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
       });
     }
     /*--------------------------------*/
+    
+    // This part moves the card to a different column
+    if (event.data.indexOf('moveTo') !== -1) {
+      var currentPage = scrap();
+      var listId = event.data.substr(8);
+      Trello.get(`/boards/${boardId}/cards`, function(cards) {
+        for (card of cards) {
+          if (card.name == currentPage['title']) {
+            checkIfCardPresent = true;
+            var idCard = card.id;
+            // Moving card to desired column
+            Trello.put('/cards/'+idCard, { idList: listId });
+          }
+        }
+      });
+    }
 
   }, false);
 });
@@ -103,7 +119,7 @@ function init(boardId) {
     buttonLocalisation.prepend($(data));
     Trello.get(`/boards/${boardId}/lists`, function(lists) {
       for (list of lists) {
-        $('#actions-available').append('<li><a href="#">'+  list.name + '</a></li>');
+        $('#actions-available').append('<li><a href="#" onclick="moveTo(\'' + list.id + '\')">'+  list.name + '</a></li>');
       }
     });
   });

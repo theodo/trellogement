@@ -11,3 +11,7 @@ function getCardURL() {
   $('#button_trello').prop("disabled",true);
   window.postMessage("getCardURL", "*");
 }
+
+function moveTo(id) {
+  window.postMessage('moveTo: ' + id, "*");
+}
