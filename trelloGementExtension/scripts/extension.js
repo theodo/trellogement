@@ -120,7 +120,7 @@ function init(boardId) {
     buttonLocalisation.prepend($(data));
     Trello.get(`/boards/${boardId}/lists`, function(lists) {
       for (list of lists) {
-        $('#actions-available').append('<li><a class="trellogement-btn-floating" href="#" onclick="moveTo(\'' + list.id + '\')">'+  list.name + '</a></li>');
+        $('#actions-available').append('<li><button class="trellogement-btn-floating" onclick="moveTo(\'' + list.id + '\')">'+  list.name + '</button></li>');
       }
     });
   });
