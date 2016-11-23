@@ -102,11 +102,10 @@ nav ul a.trellogement-btn, nav ul a.trellogement-btn-large, nav ul a.trellogemen
   position: relative;
   overflow: hidden;
   z-index: 1;
-  width: auto;
-  min-width: 130px;
+  min-width: 150px;
   height: 40px;
   line-height: 40px;
-  padding: 0 20px;
+  /*padding: 0 20px;*/
   background-color: #e73c22;
   border-radius: 4px;
   transition: .3s;
