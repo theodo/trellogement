@@ -91,7 +91,7 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
       });
     }
     /*--------------------------------*/
-    
+
     // This part moves the card to a different column
     if (event.data.indexOf('moveTo') !== -1) {
       var currentPage = scrap();
@@ -116,11 +116,11 @@ chrome.storage.local.get('trellogement_trello_board_id', function (boardId) {
 function init(boardId) {
   var url = chrome.extension.getURL('/templates/button-dropdown.html');
   $.get(url, function (data) {
-    var buttonLocalisation = $(".resume__infos .resume__action");
+    var buttonLocalisation = $("body");
     buttonLocalisation.prepend($(data));
     Trello.get(`/boards/${boardId}/lists`, function(lists) {
       for (list of lists) {
-        $('#actions-available').append('<li><a href="#" onclick="moveTo(\'' + list.id + '\')">'+  list.name + '</a></li>');
+        $('#actions-available').append('<li><a class="trellogement-btn-floating" href="#" onclick="moveTo(\'' + list.id + '\')">'+  list.name + '</a></li>');
       }
     });
   });
@@ -185,3 +185,7 @@ function compareList(boardId){
 var s = document.createElement('script');
 s.src = chrome.extension.getURL('scripts/inject.js');
 (document.head).appendChild(s);
+
+var materialize = document.createElement('script');
+materialize.src = chrome.extension.getURL('settings/js/materialize.min.js');
+(document.head).appendChild(materialize);

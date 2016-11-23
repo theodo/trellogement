@@ -40,7 +40,8 @@
 		"scripts/extension.js",
 		"scripts/inject.js",
 		"lib/trello-client.js",
-		"templates/button-dropdown.html"
+		"templates/button-dropdown.html",
+		"settings/js/materialize.min.js"
 	],
 	"options_page": "settings/index.html"
 }
