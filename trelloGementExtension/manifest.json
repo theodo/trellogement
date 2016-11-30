@@ -4,8 +4,9 @@
 	"icons": {"128": "settings/pictures/icon_128.png"},
 	"manifest_version" : 2,
 	"description": "Gérez facilement vos demandes de logement",
-	"page_action" :
+	"browser_action" :
 	{
+		"default_popup": "settings/popup.html"
 	},
 	"content_scripts": [
 		{
